@@ -54,7 +54,7 @@ on:
       branch:
         description: 'ponwrt 源码分支'
         required: true
-        default: 'master'
+        default: 'npu'
       soc:
         description: 'SoC 平台'
         required: true
