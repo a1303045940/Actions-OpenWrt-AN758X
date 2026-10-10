@@ -7,6 +7,8 @@
 #   2) 5G WiFi：国家码 CN、信道 auto、频宽 160MHz
 #
 # ================================================================
+# Add the default password for the 'root' user（Change the empty password to 'password'）
+sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' package/base-files/files/etc/shadow
 
 set -euo pipefail
 
