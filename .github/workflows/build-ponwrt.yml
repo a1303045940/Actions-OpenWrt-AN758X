@@ -37,7 +37,7 @@ env:
   NPU_DEFAULT_WIFI: ${{ github.event.inputs.npu_default_wifi || 'MT7916' }}
   NPU_FILES_FALLBACK: ${{ github.event.inputs.npu_fw_files_fallback || 'false' }}
   FW_BUILD_TIME: ''                 # 留空 = 自动取构建时时间（Asia/Shanghai）
-  FW_DESC_SUFFIX: ''               # 留空 = "· qwe · <构建时间>"；填了则完全自定义
+  FW_DESC_SUFFIX: 'none'               # 留空 = "· qwe · <构建时间>"；填了则完全自定义
 
 on:
   repository_dispatch:
@@ -66,7 +66,7 @@ on:
       profile:
         description: '机型 profile (all=全机型编译)'
         required: true
-        default: 'fiberhome_hg5585f-ct'
+        default: 'all'
         type: choice
         options:
           - fiberhome_hg5585f-cu
@@ -101,7 +101,7 @@ on:
       npu_fw:
         description: 'NPU 固件来源 (stock=仓库自带 linux-firmware；clanker=用 ClankerNPU 现编)'
         required: true
-        default: 'stock'
+        default: 'clanker'
         type: choice
         options:
           - stock
@@ -169,7 +169,7 @@ on:
       fw_author:
         description: '覆盖固件版本后缀的作者名（LuCI 概览页「固件版本」）。留空 = qwe'
         required: false
-        default: 'qwe'
+        default: 'none'
       upload_release:
         description: '固件发布到 Release（false 则只传 Artifact）'
         required: false
