@@ -247,7 +247,7 @@ jobs:
           #   all  -> 该 SoC 的所有变体都编成可选包，默认勾选这一个
           if [ "$NPU_WIFI" = "auto" ] || [ "$NPU_WIFI" = "all" ]; then
             case "$PROFILE" in
-              fiberhome_hg5585f-ct|fiberhome_hg5585f-cu|znxt_zn515xg-d|znxt_zn504xg-d)
+              fiberhome_hg5585f-ct|fiberhome_hg5585f-cu|znxt_zn515xg-d|znxt_zn504xg-d|h3c_hm2004-du)
                 NPU_DEFAULT_WIFI="MT7916" ;;
               all)
                 NPU_DEFAULT_WIFI="MT7916"
