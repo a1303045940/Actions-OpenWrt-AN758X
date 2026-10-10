@@ -4,6 +4,8 @@ WIFI_KEY='password'
 
 # 第一个无线接口：通常为 2.4 GHz
 uci -q set wireless.@wifi-device[0].disabled='0'
+uci -q set wireless.@wifi-device[0].htmode='HE40'
+uci -q set wireless.@wifi-device[0].channel='auto'
 uci -q set wireless.@wifi-iface[0].disabled='0'
 uci -q set wireless.@wifi-iface[0].network='lan'
 uci -q set wireless.@wifi-iface[0].mode='ap'
@@ -13,6 +15,7 @@ uci -q set wireless.@wifi-iface[0].key="$WIFI_KEY"
 
 # 第二个无线接口：通常为 5 GHz
 uci -q set wireless.@wifi-device[1].disabled='0'
+uci -q set wireless.@wifi-device[1].htmode='HE160'
 uci -q set wireless.@wifi-iface[1].disabled='0'
 uci -q set wireless.@wifi-iface[1].network='lan'
 uci -q set wireless.@wifi-iface[1].mode='ap'
