@@ -528,6 +528,7 @@ jobs:
           else
             # 清掉所有设备选中项（含 is not set 行），再单独打开目标机型
             sed -i '/CONFIG_TARGET_DEVICE_/d; /^CONFIG_TARGET_MULTI_PROFILE=/d' .config
+            /CONFIG_TARGET_ALL_PROFILES/d; /CONFIG_TARGET_PER_DEVICE_ROOTFS/d' .config
             {
               echo "CONFIG_TARGET_MULTI_PROFILE=y"
               echo "CONFIG_TARGET_DEVICE_airoha_${SOC}_DEVICE_${PROFILE}=y"
