@@ -42,7 +42,7 @@ env:
   #   ⇒ 只剩 npu：下行与上行都走 NPU (Clanker/Kite)。
   WIFI_OFFLOAD: ${{ github.event.inputs.wifi_offload || 'npu' }}
   # 固件版本后缀（显示在 LuCI 概览页「固件版本」后面）
-  FW_AUTHOR: ${{ github.event.inputs.fw_author || 'qwe3017' }}
+  FW_AUTHOR: ${{ github.event.inputs.fw_author || 'none' }}
   FW_BUILD_TIME: ''                 # 留空 = 自动取构建时时间（Asia/Shanghai）
   FW_DESC_SUFFIX: ''               # 留空 = "· <作者> · <构建时间>"；填了则完全自定义
 
@@ -184,7 +184,7 @@ on:
       fw_author:
         description: '固件版本后面显示的作者名（LuCI 概览页「固件版本」）'
         required: false
-        default: 'qwe3017'
+        default: 'none'
       upload_release:
         description: '固件发布到 Release（false 则只传 Artifact）'
         required: false
