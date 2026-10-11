@@ -895,6 +895,19 @@ jobs:
         echo "--- 修改后 .config 中的 WED 行 ---"
         grep -nE 'kmod-airoha-(wed|wdma)' .config || echo "(无)"
 
+    - name: Enable bridge netfilter support
+      if: env.BUILD_SCOPE != 'toolchain-only'
+      run: |
+        set -euo pipefail
+        cd "$BUILD_ROOT/openwrt"
+
+        sed -i \
+          -e '/^CONFIG_PACKAGE_kmod-br-netfilter=/d' \
+          -e '/^# CONFIG_PACKAGE_kmod-br-netfilter is not set$/d' \
+          .config
+
+        echo 'CONFIG_PACKAGE_kmod-br-netfilter=y' >> .config
+        
     # =========================================================
     # 8. diy-part2.sh —— 时区改为中国
     # =========================================================
@@ -1057,7 +1070,12 @@ jobs:
         echo "缓存 Key  : $CACHE_KEY"
         echo "缓存前缀  : $CACHE_PREFIX"
         echo "========================================"
-
+if [ "${BUILD_SCOPE}" != "toolchain-only" ]; then
+  if ! grep -qx 'CONFIG_PACKAGE_kmod-br-netfilter=y' .config; then
+    echo "::error::kmod-br-netfilter 在 defconfig 后未启用"
+    exit 1
+  fi
+fi
     # =========================================================
     # 9.5 下载工具链源码 —— 必须在编工具链之前
     #     报错 "Can't open dl/musl-1.2.6.tar.gz" 就是这一步缺失导致的：
