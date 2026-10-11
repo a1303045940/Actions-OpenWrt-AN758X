@@ -1,4 +1,4 @@
-name: Build PonWrt (Airoha AN758x PON)
+name: Build PonWrt (NPU PON)
 
 env:
   
@@ -1119,7 +1119,7 @@ jobs:
       id: release-restore
       continue-on-error: true
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         cd "$BUILD_ROOT/openwrt"
 
@@ -1242,7 +1242,7 @@ jobs:
     - name: Save toolchain to Release backup
       if: steps.toolchain.outputs.need_save_release == 'true'
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         cd "$BUILD_ROOT/openwrt"
 
@@ -1464,7 +1464,7 @@ jobs:
       uses: softprops/action-gh-release@v2.3.2
       if: steps.tag.outputs.status == 'success'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
@@ -1492,7 +1492,7 @@ jobs:
       if: steps.compile.outputs.status == 'success'
       uses: Mattraks/delete-workflow-runs@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_TOKEN }}
         retain_days: 7
         keep_minimum_runs: 10
 
@@ -1504,4 +1504,4 @@ jobs:
         delete_tags: true
         delete_tag_pattern: '^${{ env.DEVICE_NAME }}-'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
