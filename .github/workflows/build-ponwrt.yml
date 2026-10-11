@@ -101,7 +101,7 @@ on:
       npu_fw:
         description: 'NPU 固件来源 (stock=仓库自带 linux-firmware；clanker=用 ClankerNPU 现编)'
         required: true
-        default: 'clanker'
+        default: 'stock'
         type: choice
         options:
           - stock
@@ -136,7 +136,7 @@ on:
       npu_fw_files_fallback:
         description: '额外把 NPU 镜像铺进 files/lib/firmware/airoha（双保险；开启后包置 n 也会生效）'
         required: false
-        default: 'true'
+        default: 'false'
         type: choice
         options:
           - 'false'
@@ -144,7 +144,7 @@ on:
       npu_clanker:
         description: 'CLANKER=1 适配 Clanker 自改 host driver (换固件需同时换驱动，一般保持 0)'
         required: false
-        default: '1'
+        default: '0'
         type: choice
         options:
           - '0'
