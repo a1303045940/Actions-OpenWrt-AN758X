@@ -126,7 +126,7 @@ on:
       npu_wifi:
         description: 'NPU 固件变体: WiFi 芯片 (auto=按机型推断；MT7916/MT7996=kite，其余=eagle)'
         required: true
-        default: 'auto'
+        default: 'MT7916'
         type: choice
         options:
           - auto
